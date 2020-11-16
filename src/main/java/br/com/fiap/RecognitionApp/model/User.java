@@ -19,7 +19,6 @@ public class User {
 	@Column(name="name")
 	private String name;
 	
-	@NotBlank
 	@Column(name="surname")
 	private String surname;
 	

@@ -34,7 +34,7 @@ public class UserController {
 	}
 	
 	@PostMapping()
-	public ResponseEntity<User> save(@Valid @RequestBody User user, BindingResult result, RedirectAttributes redirect) {
+	public ResponseEntity<User> save (@RequestBody User user, BindingResult result, RedirectAttributes redirect) {
 		if (result.hasErrors()) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		userRepository.save(user);
 		return new ResponseEntity<>(HttpStatus.OK);
