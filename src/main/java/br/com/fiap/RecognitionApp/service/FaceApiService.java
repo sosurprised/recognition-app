@@ -14,15 +14,15 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.com.fiap.RecognitionApp.dto.FaceApiInformationDto;
-import br.com.fiap.RecognitionApp.model.Measures;
+import br.com.fiap.RecognitionApp.model.Measure;
 
 @Service
 public class FaceApiService {
 	
-	public Measures GetMesures(String url) {
+	public Measure GetMesures(String url) {
 		String subscription_Key = "8b5d12ba2bcb464c997ff4f8e3f600f3";
 		String endpoint = "https://ps.cognitiveservices.azure.com/";
-        Measures measures = new Measures();
+        Measure measure = new Measure();
         String formatedUrl =  String.format("{\"url\":\"%s\"}", url);
 	    try
 	    {
@@ -59,7 +59,7 @@ public class FaceApiService {
                 faceApiResponse = mapper.readValue(jsonString, FaceApiInformationDto[].class);
                 System.out.println("face api response" + faceApiResponse[0].getFaceId());
                 
-                measures = new Measures(faceApiResponse[0].getFaceId(), 
+                measure = new Measure(faceApiResponse[0].getFaceId(), 
                 		faceApiResponse[0].getFaceRectangle().getTop(),
                 		faceApiResponse[0].getFaceRectangle().getLeft(),
                 		faceApiResponse[0].getFaceRectangle().getWidth(),
@@ -71,7 +71,7 @@ public class FaceApiService {
 	        // Display error message.
 	        System.out.println(e.getMessage());
 	    }
-	    return measures;
+	    return measure;
 	}
 }
 

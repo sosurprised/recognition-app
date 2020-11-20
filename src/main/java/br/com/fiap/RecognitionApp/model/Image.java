@@ -27,12 +27,8 @@ public class Image {
 	@Column(name="image_id")
 	private Long image_id;
 	
-	@NotBlank()
 	@Column(name="url")
 	private String url;
-	
-	@OneToMany(mappedBy="image")
-	Set<Measures> measures;
 	
 	@ManyToOne
 	@JoinColumn(name = "person_id", nullable = false)
@@ -43,12 +39,6 @@ public class Image {
 	}
 	public void setUrl(String url) {
 		this.url = url;
-	}
-	public Set<Measures> getMeasures() {
-		return measures;
-	}
-	public void setMeasures(Set<Measures> measures) {
-		this.measures = measures;
 	}
 	public Person getPerson() {
 		return person;

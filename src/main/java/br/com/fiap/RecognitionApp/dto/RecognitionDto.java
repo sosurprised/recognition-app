@@ -3,6 +3,7 @@ package br.com.fiap.RecognitionApp.dto;
 public class RecognitionDto {
 	private String url;
 	private Long person_id;
+	
 	public String getUrl() {
 		return url;
 	}

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.fiap.RecognitionApp.model.Measures;
+import br.com.fiap.RecognitionApp.model.Measure;
 import br.com.fiap.RecognitionApp.repository.MeasuresRepository;
 
 @RestController
@@ -17,8 +17,8 @@ public class MeasuresController {
 	private MeasuresRepository measuresRepository;
 	
 	@GetMapping()
-	public List<Measures> getAll() {
-		List<Measures> measures = measuresRepository.findAll();
-		return measures;
+	public List<Measure> getAll() {
+		List<Measure> measure = measuresRepository.findAll();
+		return measure;
 	}
 }

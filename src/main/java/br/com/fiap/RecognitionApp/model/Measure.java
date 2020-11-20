@@ -1,19 +1,16 @@
 package br.com.fiap.RecognitionApp.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
-@Entity(name="measure")
-public class Measures {
-	public Measures () {}	
-	public Measures(String faceId, int top, int left, int width, int height) {
+@Entity(name="measures")
+public class Measure {
+	public Measure () {}	
+	public Measure(String faceId, Integer top, Integer left, Integer width, Integer height) {
 		super();
 		this.faceId = faceId;
 		this.top = top;
@@ -24,34 +21,32 @@ public class Measures {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="measures_id")
-	private Long measures_id;	
+	private Long id;	
 	
 	@Column(name="face_id")
 	private String faceId;
 	
 	@Column(name="top")
-	private int top;
+	private Integer top;
 	
-	@Column(name="left")
-	private int left;
+	@Column(name="leftside")
+	private Integer left;
 	
 	@Column(name="width")
-	private int width;
+	private Integer width;
 	
 	@Column(name="height")
-	private int height;
+	private Integer height;
 	
-	@ManyToOne
-	@JoinColumn(name = "image_id", nullable = false)
-	private Image image;
+	@Column(name="url")
+	private String url;
 	
-	public Image getImage() {
-		return image;
+	public String getUrl() {
+		return url;
 	}
-	public void setImage(Image image) {
-		this.image = image;
+	public void setUrl(String url) {
+		this.url = url;
 	}
-
 	public String getFaceId() {
 		return faceId;
 	}
@@ -60,35 +55,35 @@ public class Measures {
 		this.faceId = faceId;
 	}
 
-	public int getTop() {
+	public Integer getTop() {
 		return top;
 	}
 
-	public void setTop(int top) {
+	public void setTop(Integer top) {
 		this.top = top;
 	}
 
-	public int getLeft() {
+	public Integer getLeft() {
 		return left;
 	}
 
-	public void setLeft(int left) {
+	public void setLeft(Integer left) {
 		this.left = left;
 	}
 
-	public int getWidth() {
+	public Integer getWidth() {
 		return width;
 	}
 
-	public void setWidth(int width) {
+	public void setWidth(Integer width) {
 		this.width = width;
 	}
 
-	public int getHeight() {
+	public Integer getHeight() {
 		return height;
 	}
 
-	public void setHeight(int height) {
+	public void setHeight(Integer height) {
 		this.height = height;
 	}
 }
