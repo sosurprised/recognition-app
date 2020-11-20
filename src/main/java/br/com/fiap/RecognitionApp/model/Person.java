@@ -2,7 +2,6 @@ package br.com.fiap.RecognitionApp.model;
 
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,12 +10,12 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 
-@Entity(name="people")
+@Entity(name="person")
 public class Person {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="person_id")
-	private Long id;
+	private Long person_id;
 	
 	@NotBlank()
 	@Column(name="name")
@@ -34,15 +33,15 @@ public class Person {
 	@Column(name="cpf")
 	private String cpf;
 
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="person")
+	@OneToMany(mappedBy="person")
 	Set<Image> images;
-	
-	public Long getId() {
-		return id;
+
+	public Long getPerson_id() {
+		return person_id;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setPerson_id(Long person_id) {
+		this.person_id = person_id;
 	}
 
 	public String getName() {

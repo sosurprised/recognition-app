@@ -1,5 +1,5 @@
 
-INSERT INTO people (name, surname, document, cpf) VALUES
+INSERT INTO person (name, surname, document, cpf) VALUES
 ('Luis', 'Amaral', '1ht87654u', '56985478589');
 
 INSERT INTO users (name, surname, email, pass) VALUES

@@ -43,7 +43,7 @@ public class PersonController {
 	@PutMapping("/update")
 	public ResponseEntity<Person> updateTask(@Valid Person person, BindingResult result, RedirectAttributes redirect) {
 		if (result.hasErrors()) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		Person personToEdit = personRepository.getOne(person.getId());
+		Person personToEdit = personRepository.getOne(person.getPerson_id());
 		
 		if(personToEdit==null) new ResponseEntity<>(HttpStatus.BAD_REQUEST); 
 		personToEdit = person;
