@@ -9,21 +9,28 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.com.fiap.RecognitionApp.dto.FaceApiInformationDto;
 import br.com.fiap.RecognitionApp.model.Measure;
+import br.com.fiap.RecognitionApp.model.Person;
+import br.com.fiap.RecognitionApp.repository.PersonRepository;
 
 @Service
 public class FaceApiService {
+	
+	@Autowired
+	private PersonRepository personRepository;
 	
 	public Measure GetMesures(String url) {
 		String subscription_Key = "8b5d12ba2bcb464c997ff4f8e3f600f3";
 		String endpoint = "https://ps.cognitiveservices.azure.com/";
         Measure measure = new Measure();
         String formatedUrl =  String.format("{\"url\":\"%s\"}", url);
+        System.out.println("url" + url);
 	    try
 	    {
 	    	HttpClient httpclient = HttpClientBuilder.create().build();

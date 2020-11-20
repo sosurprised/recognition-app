@@ -91,4 +91,13 @@ public class Measure {
 	public void setHeight(Integer height) {
 		this.height = height;
 	}
+	
+	public static boolean IsEqual(Measure measure, Measure newMeasure) {
+		if(measure.getHeight() == newMeasure.getHeight()
+				&& measure.getWidth() == newMeasure.getWidth() 
+				&& measure.getLeft() == newMeasure.getLeft() 
+				&& measure.getTop() == newMeasure.getTop())
+			return true;		
+		return false;
+	}	
 }

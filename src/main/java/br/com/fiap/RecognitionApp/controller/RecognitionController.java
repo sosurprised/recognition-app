@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import antlr.collections.List;
+import br.com.fiap.RecognitionApp.dto.RecognitionByUrlDto;
 import br.com.fiap.RecognitionApp.dto.RecognitionDto;
 import br.com.fiap.RecognitionApp.model.Image;
 import br.com.fiap.RecognitionApp.model.Measure;
@@ -49,5 +51,24 @@ public class RecognitionController {
 			return new ResponseEntity<>(HttpStatus.OK);
 		}	
 		return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}	
+	
+	@PostMapping("byUrl")
+	public Person RecognizeByUrl(@RequestBody RecognitionByUrlDto request) {
+		Person person = new Person();
+		String url = request.getUrl();
+		if(url == null || url == "")
+			return null;
+		Measure measureFromApi = faceApiService.GetMesures(url);
+		java.util.List<Person> people = personRespository.findAll();
+		java.util.List<Measure> allMeasures = measuresRespository.findAll();
+		for(Measure thisMeasure : allMeasures ) {
+			if(Measure.IsEqual(thisMeasure, measureFromApi)) {
+				person = thisMeasure.getImage().getPerson();
+			}
+		}
+
+		return person;	
+		
 	}	
 }

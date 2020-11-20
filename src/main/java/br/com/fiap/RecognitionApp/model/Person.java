@@ -75,4 +75,12 @@ public class Person {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
+
+	public Set<Image> getImages() {
+		return images;
+	}
+
+	public void setImages(Set<Image> images) {
+		this.images = images;
+	}
 }
