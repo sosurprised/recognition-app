@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 
 @Entity(name="images")
@@ -34,6 +35,9 @@ public class Image {
 	@JoinColumn(name = "person_id", nullable = false)
 	private Person person;
 
+	@OneToMany(mappedBy="image")
+	Set<Measure> measures;
+	
 	public String getUrl() {
 		return url;
 	}

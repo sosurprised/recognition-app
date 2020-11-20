@@ -43,7 +43,7 @@ public class RecognitionController {
 		Image image = new Image (request.getUrl(), person);
 		imageRespository.save(image);
 		Measure measure = faceApiService.GetMesures(request.getUrl());
-		measure.setUrl(request.getUrl());
+		measure.setImage(image);
 		if (measure != null) {
 			measuresRespository.save(measure);
 			return new ResponseEntity<>(HttpStatus.OK);

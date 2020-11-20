@@ -6,6 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity(name="measures")
 public class Measure {
@@ -20,8 +23,8 @@ public class Measure {
 	}
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="measures_id")
-	private Long id;	
+	@Column(name="measure_id")
+	private Long measure_id;	
 	
 	@Column(name="face_id")
 	private String faceId;
@@ -38,15 +41,17 @@ public class Measure {
 	@Column(name="height")
 	private Integer height;
 	
-	@Column(name="url")
-	private String url;
-	
-	public String getUrl() {
-		return url;
+	@ManyToOne
+	@JoinColumn(name = "image_id", nullable = false)
+	private Image image;
+    
+	public Image getImage() {
+		return image;
 	}
-	public void setUrl(String url) {
-		this.url = url;
+	public void setImage(Image image) {
+		this.image = image;
 	}
+
 	public String getFaceId() {
 		return faceId;
 	}
