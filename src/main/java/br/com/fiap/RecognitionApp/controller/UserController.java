@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,6 +37,8 @@ public class UserController {
 	@PostMapping()
 	public ResponseEntity<User> save (@RequestBody User user, BindingResult result, RedirectAttributes redirect) {
 		if (result.hasErrors()) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		user.setPass(encoder.encode(user.getPass()));
 		userRepository.save(user);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
